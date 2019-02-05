@@ -25,9 +25,7 @@ vec200
 ```
 ##3. How many perfect squares are there between 1 and 1001? Storage the answer in a  variable named `numPerfect` and print. You may want to look at `?round`.
 ```{r}
-sqrt(1001)
-a <- 1:31
-numperfect <- a^2
+numperfect = floor(sqrt(1001))
 numperfect
 ```
  Cars and mileage
@@ -73,4 +71,8 @@ hist(dat2008$hwy)
 hist(dat2008$cty)
 hist(dat1999$hwy)
 hist(dat1999$cty)
+summary(dat2008$hwy)
+summary(dat2008$cty)
+summary(dat1999$hwy)
+summary(dat1999$hwy)
 ```

@@ -1,0 +1,76 @@
+---
+title: 'Homework #2'
+author: "Your Name; your_github_username"
+output: html_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## R commands
+1. Today's temperature has a high of 15 and a low of -10 degree fahrenheit.  Find the corresponding degress in celsius and storage it in a (single) vector named `cel`. Print the variable.
+
+```{r}
+h <- 15
+l <- -(10)
+cel <- c((h-32)*5/9, (l-32)*5/9)
+cel 
+```
+2. Create a vector of length 200. The odd entries should be 1 and even entries should be 0. Storage the created in a variable named `vec200` and print.
+
+```{r}
+vec200 <- rep(c(1,0),length.out=200)
+vec200
+```
+##3. How many perfect squares are there between 1 and 1001? Storage the answer in a  variable named `numPerfect` and print. You may want to look at `?round`.
+```{r}
+sqrt(1001)
+a <- 1:31
+numperfect <- a^2
+numperfect
+```
+ Cars and mileage
+For this part we will use the `mpg` data set, you can access the data by loading the package `ggplot2` into your R session by executing the command 
+`library(ggplot2)`. The `mpg` data includes information about fuel economy of popular car models
+for the years 1999 and 2008 as collected by the US Environmental Protection Agency. An answer should include a short paragraph of text for the explanation to a (human) reader, together with appropriate R code, outputs, and graphs.
+
+
+
+1. What are the 3 most fuel-efficient models in terms of highway mileage? Storage the data frame (with 3 rows) containing all information of these three cars in a variable named `top3` and print.
+```{r}
+library(ggplot2)
+top3 <- head((mpg[order(-mpg$hwy),]),3)
+top3
+```
+2. How many different compact models are included in this dataset? Storage the answer in  a variable named `numCompact` and print.
+```{r}
+
+a <-mpg[mpg$class == "compact",]
+numCompact <- length(unique(a$model))
+numCompact
+```
+3. Create a scatterplot of `hwy` and `cty` and describe the relationship. Why are there so few points visible?
+```{r}
+plot(mpg$hwy, mpg$cty)
+
+#There are so few points visable because a lot of the points overlap. There are multiple cars with the same city and highway miles per gallon, which makes it look like one point when there is actually multiple points overlapping. 
+```
+4. Are cars in 2008 more fuel efficient than cars in 1999? Use graphs *and* summary statistics to answer this question. 
+```{r}
+dat2008 <- mpg[mpg$year == 2008, ]
+dat1999 <- mpg[mpg$year == 1999, ]
+hwy2008mean <- mean(dat2008$hwy, na.rm=TRUE)
+hwy1999mean <- mean(dat1999$hwy, na.rm=TRUE)
+hwy2008mean
+hwy1999mean 
+cty2008mean <- mean(dat2008$cty, na.rm=TRUE)
+cty1999mean <- mean(dat1999$cty, na.rm=TRUE)
+cty2008mean
+cty1999mean 
+#This shows that in 2008, the hwy MPG was higher than in 1999. However, the City MPG was higher in 1999, than in 2008. 
+hist(dat2008$hwy)
+hist(dat2008$cty)
+hist(dat1999$hwy)
+hist(dat1999$cty)
+```
